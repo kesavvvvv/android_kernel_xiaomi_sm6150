@@ -367,6 +367,7 @@ static void _sde_debugfs_destroy(struct sde_kms *sde_kms)
 static int sde_kms_enable_vblank(struct msm_kms *kms, struct drm_crtc *crtc)
 {
 	int ret = 0;
+#ifndef CONFIG_MACH_XIAOMI_F7B
 	struct sde_kms *sde_kms;
 	struct msm_drm_private *priv;
 	struct sde_crtc *sde_crtc;
@@ -375,9 +376,11 @@ static int sde_kms_enable_vblank(struct msm_kms *kms, struct drm_crtc *crtc)
 	sde_kms = to_sde_kms(kms);
 	priv = sde_kms->dev->dev_private;
 	sde_crtc = to_sde_crtc(crtc);
+#endif
 
 	SDE_ATRACE_BEGIN("sde_kms_enable_vblank");
 
+#ifndef CONFIG_MACH_XIAOMI_F7B
 	if (sde_crtc->vblank_requested == false) {
 		SDE_ATRACE_BEGIN("sde_encoder_trigger_early_wakeup");
 		drm_for_each_encoder(drm_enc, crtc->dev)
@@ -390,6 +393,7 @@ static int sde_kms_enable_vblank(struct msm_kms *kms, struct drm_crtc *crtc)
 		}
 		SDE_ATRACE_END("sde_encoder_trigger_early_wakeup");
 	}
+#endif
 
 	ret = sde_crtc_vblank(crtc, true);
 

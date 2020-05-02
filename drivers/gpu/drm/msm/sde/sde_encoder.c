@@ -5860,6 +5860,7 @@ void sde_encoder_recovery_events_handler(struct drm_encoder *encoder,
 	sde_enc->recovery_events_enabled = enabled;
 }
 
+#ifndef CONFIG_MACH_XIAOMI_F7B
 void sde_encoder_trigger_early_wakeup(struct drm_encoder *drm_enc)
 {
 	struct sde_encoder_virt *sde_enc = NULL;
@@ -5885,3 +5886,4 @@ void sde_encoder_trigger_early_wakeup(struct drm_encoder *drm_enc)
 	SDE_ATRACE_END("sde_encoder_resource_control");
 
 }
+#endif
