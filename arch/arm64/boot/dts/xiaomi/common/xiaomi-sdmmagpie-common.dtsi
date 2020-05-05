@@ -42,6 +42,13 @@
                 fsmgr_flags = "wait";
                 status = "ok";
             };
+            product {
+              compatible = "android,product";
+              dev = "/dev/block/platform/soc/1d84000.ufshc/by-name/cust";
+              type = "ext4";
+              mnt_flags = "ro,noatime,nodev,barrier=1";
+              fsmgr_flags = "wait";
+            };
         };
     };
 };
